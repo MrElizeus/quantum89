@@ -1,0 +1,6 @@
+build/
+*.89z
+*.o
+*.bak
+*.tmp
+.DS_Store
