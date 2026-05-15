@@ -1,6 +1,8 @@
 APP = quantum89
 
-CORE_SRC = src/core/quantum.c
+CORE_SRC = \
+	src/core/quantum.c \
+	src/core/photons.c
 
 TI_SRC = \
 	src/ti/main.c \

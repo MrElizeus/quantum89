@@ -3,16 +3,74 @@
 #include "screens.h"
 #include "../core/quantum.h"
 
+static void show_photon_result(double lambda_nm)
+{
+    char buffer[64];
+    double e_j;
+    double e_ev;
+    double freq_hz;
+    double momentum;
+    double ratio_cc;
+
+    e_j = q_photon_energy_j_from_nm(lambda_nm);
+    e_ev = q_photon_energy_ev_from_nm(lambda_nm);
+    freq_hz = q_photon_frequency_hz_from_nm(lambda_nm);
+    momentum = q_photon_momentum_from_nm(lambda_nm);
+    ratio_cc = q_photon_energy_ratio_from_nm(lambda_nm, Q_CC_BOND);
+
+    ui_clear();
+    ui_title("FOTON RESULT");
+
+    sprintf(buffer, "lambda = %.1f nm", lambda_nm);
+    ui_line(12, buffer);
+
+    sprintf(buffer, "nu = %.3E Hz", freq_hz);
+    ui_line(24, buffer);
+
+    sprintf(buffer, "E = %.3E J", e_j);
+    ui_line(36, buffer);
+
+    sprintf(buffer, "E = %.4f eV", e_ev);
+    ui_line(48, buffer);
+
+    sprintf(buffer, "p = %.3E kgm/s", momentum);
+    ui_line(60, buffer);
+
+    sprintf(buffer, "E/Ecc = %.3f", ratio_cc);
+    ui_line(72, buffer);
+
+    ui_footer("Tecla: volver");
+    ui_wait();
+}
+
+static void show_photon_formulas(void)
+{
+    ui_clear();
+    ui_title("FOTON FORMULAS");
+
+    ui_line(14, "nu = c/lambda");
+    ui_line(26, "E  = h*nu");
+    ui_line(38, "E  = h*c/lambda");
+    ui_line(50, "p  = h/lambda");
+    ui_line(62, "eV = J/e");
+    ui_line(74, "Ecc=5.8E-19 J");
+
+    ui_footer("Tecla: volver");
+    ui_wait();
+}
+
 void screen_constants(void)
 {
     ui_clear();
     ui_title("CONSTANTES");
 
-    ui_line(14, "h    = 6.62607015E-34");
-    ui_line(24, "hbar = 1.054571817E-34");
-    ui_line(34, "c    = 2.99792458E8");
-    ui_line(44, "e    = 1.602176634E-19");
-    ui_line(54, "me   = 9.1093837E-31");
+    ui_line(12, "h    = 6.62607015E-34");
+    ui_line(22, "hbar = 1.054571817E-34");
+    ui_line(32, "c    = 2.99792458E8");
+    ui_line(42, "e    = 1.602176634E-19");
+    ui_line(52, "me   = 9.1093837E-31");
+    ui_line(62, "kB   = 1.380649E-23");
+    ui_line(72, "u    = 1.660539E-27");
 
     ui_footer("Tecla: volver");
     ui_wait();
@@ -20,27 +78,53 @@ void screen_constants(void)
 
 void screen_photon_demo(void)
 {
-    char buffer[64];
+    short key;
 
-    double lambda_nm = 632.8;
-    double e_ev = q_photon_energy_ev_from_nm(lambda_nm);
-    double freq_hz = q_photon_frequency_hz_from_nm(lambda_nm);
+    while (1)
+    {
+        ui_clear();
+        ui_title("FOTON / PLANCK");
 
-    ui_clear();
-    ui_title("FOTON");
+        ui_line(14, "1. HeNe 632.8 nm");
+        ui_line(26, "2. UV 300 nm");
+        ui_line(38, "3. Visible 600 nm");
+        ui_line(50, "4. IR 1200 nm");
+        ui_line(62, "5. Formulas");
 
-    ui_line(14, "lambda = 632.8 nm");
+        ui_footer("1-5 elegir | ESC volver");
+        key = ngetchx();
 
-    sprintf(buffer, "E = %.4f eV", e_ev);
-    ui_line(28, buffer);
+        if (key == KEY_ESC)
+        {
+            break;
+        }
 
-    sprintf(buffer, "nu = %.3E Hz", freq_hz);
-    ui_line(42, buffer);
+        switch (key)
+        {
+            case '1':
+                show_photon_result(632.8);
+                break;
 
-    ui_line(60, "E = h*c/lambda");
+            case '2':
+                show_photon_result(300.0);
+                break;
 
-    ui_footer("Tecla: volver");
-    ui_wait();
+            case '3':
+                show_photon_result(600.0);
+                break;
+
+            case '4':
+                show_photon_result(1200.0);
+                break;
+
+            case '5':
+                show_photon_formulas();
+                break;
+
+            default:
+                break;
+        }
+    }
 }
 
 void screen_box1d_demo(void)
@@ -72,8 +156,8 @@ void screen_about(void)
     ui_clear();
     ui_title("ABOUT");
 
-    ui_line(16, "Quantum89 v0.1");
-    ui_line(28, "Mecanica Cuantica");
+    ui_line(16, "Quantum89 v0.2-dev");
+    ui_line(28, "Modulo Foton/Planck");
     ui_line(40, "TI-89 Titanium");
     ui_line(52, "C / GCC4TI");
     ui_line(68, "Eliseo H.");
