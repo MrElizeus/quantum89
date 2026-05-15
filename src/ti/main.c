@@ -10,12 +10,13 @@ static void show_main_menu(void)
     ui_clear();
     ui_title("QUANTUM89");
 
-    ui_line(16, "1. Constantes");
-    ui_line(28, "2. Foton");
-    ui_line(40, "3. Caja 1D");
-    ui_line(52, "4. About");
+    ui_line(16, "1. Tarea 1 Luz");
+    ui_line(28, "2. Tarea 2 Oper");
+    ui_line(40, "3. Tarea 3 Caja/Osc");
+    ui_line(52, "4. Constantes");
+    ui_line(64, "5. About");
 
-    ui_footer("1-4 elegir | ESC salir");
+    ui_footer("1-5 elegir | ESC salir");
 }
 
 void _main(void)
@@ -35,18 +36,22 @@ void _main(void)
         switch (key)
         {
             case '1':
-                screen_constants();
+                screen_task1_menu();
                 break;
 
             case '2':
-                screen_photon_demo();
+                screen_task2_menu();
                 break;
 
             case '3':
-                screen_box1d_demo();
+                screen_task3_menu();
                 break;
 
             case '4':
+                screen_constants();
+                break;
+
+            case '5':
                 screen_about();
                 break;
 

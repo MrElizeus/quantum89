@@ -5,6 +5,7 @@ void ui_clear(void);
 void ui_title(const char *title);
 void ui_footer(const char *text);
 void ui_wait(void);
+short ui_wait_key(void);
 void ui_line(short y, const char *text);
 
 #endif

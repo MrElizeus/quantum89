@@ -2,12 +2,21 @@ APP = quantum89
 
 CORE_SRC = \
 	src/core/quantum.c \
-	src/core/photons.c
+	src/core/photons.c \
+	src/core/matter_waves.c \
+	src/core/photoelectric.c \
+	src/core/forces.c \
+	src/core/blackbody.c \
+	src/core/box1d.c \
+	src/core/oscillator.c
 
 TI_SRC = \
 	src/ti/main.c \
 	src/ti/ui.c \
-	src/ti/screens.c
+	src/ti/screens.c \
+	src/ti/screens_task1.c \
+	src/ti/screens_task2.c \
+	src/ti/screens_task3.c
 
 TEST_SRC = tests/test_quantum.c
 

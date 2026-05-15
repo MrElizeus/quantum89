@@ -12,7 +12,14 @@ double q_j_to_ev(double j)
 
 double q_particle_box_energy_j(int n, double mass_kg, double length_m)
 {
-    double nd = (double)n;
+    double nd;
+
+    if (n <= 0 || mass_kg <= 0.0 || length_m <= 0.0)
+    {
+        return 0.0;
+    }
+
+    nd = (double)n;
     return (nd * nd * Q_H * Q_H) / (8.0 * mass_kg * length_m * length_m);
 }
 

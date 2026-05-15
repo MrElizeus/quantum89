@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <tigcclib.h>
 #include "ui.h"
 #include "screens.h"
@@ -61,6 +62,8 @@ static void show_photon_formulas(void)
 
 void screen_constants(void)
 {
+    short key;
+
     ui_clear();
     ui_title("CONSTANTES");
 
@@ -68,10 +71,23 @@ void screen_constants(void)
     ui_line(22, "hbar = 1.054571817E-34");
     ui_line(32, "c    = 2.99792458E8");
     ui_line(42, "e    = 1.602176634E-19");
-    ui_line(52, "me   = 9.1093837E-31");
-    ui_line(62, "kB   = 1.380649E-23");
-    ui_line(72, "u    = 1.660539E-27");
+    ui_line(52, "me   = 9.1093837015E-31");
+    ui_line(62, "mp   = 1.67262192369E-27");
 
+    ui_footer("ENTER sigue | ESC vuelve");
+    key = ui_wait_key();
+    if (key == KEY_ESC)
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("CONSTANTES");
+    ui_line(14, "u    = 1.66053906660E-27");
+    ui_line(24, "kB   = 1.380649E-23");
+    ui_line(34, "eps0 = 8.8541878128E-12");
+    ui_line(44, "pi   = 3.14159265358979");
+    ui_line(54, "CC   = 5.8E-19 J");
     ui_footer("Tecla: volver");
     ui_wait();
 }
@@ -156,8 +172,8 @@ void screen_about(void)
     ui_clear();
     ui_title("ABOUT");
 
-    ui_line(16, "Quantum89 v0.2-dev");
-    ui_line(28, "Modulo Foton/Planck");
+    ui_line(16, "Quantum89 exam sprint");
+    ui_line(28, "Tareas 1, 2 y 3");
     ui_line(40, "TI-89 Titanium");
     ui_line(52, "C / GCC4TI");
     ui_line(68, "Eliseo H.");

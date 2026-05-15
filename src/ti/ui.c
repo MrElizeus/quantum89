@@ -22,6 +22,11 @@ void ui_wait(void)
     ngetchx();
 }
 
+short ui_wait_key(void)
+{
+    return ngetchx();
+}
+
 void ui_line(short y, const char *text)
 {
     DrawStr(2, y, text, A_NORMAL);
