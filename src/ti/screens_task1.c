@@ -114,6 +114,18 @@ static void task1_photon_formula(void)
     ui_line(34, "E = h*c/lambda");
     ui_line(46, "p = h/lambda");
     ui_line(58, "1/lambda -> E sube");
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("ATAJO 1240");
+    ui_line(14, "E(eV)=1240/lambda");
+    ui_line(26, "lambda en nm");
+    ui_line(38, "NO usar metros");
+    ui_line(50, "si usas m: hc/lambda");
+    ui_line(62, "y divide por e");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -150,6 +162,7 @@ static void task1_photon_planck(void)
     ui_line(34, "E = h*c/lambda");
     ui_line(46, "cada foton vale E");
     ui_line(58, "mayor nu -> mayor E");
+    ui_line(70, "compara con enlace");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -260,6 +273,18 @@ static void task1_debroglie_electron_case(const char *title, double kinetic_ev)
     ui_line(58, "dH = 128 pm");
     sprintf(buffer, "N = %.3E", q_ratio(128.0e-12, wavelength_m));
     ui_line(68, buffer);
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title(title);
+    ui_line(14, "FISICA:");
+    ui_line(24, "lambda tipo pm");
+    ui_line(34, "resuelve atomos");
+    ui_line(46, "si v > c:");
+    ui_line(56, "error eV->J o masa");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -337,6 +362,18 @@ static void task1_debroglie_formula(void)
     ui_line(34, "v = sqrt(2*K/m)");
     ui_line(46, "lambda = h/p");
     ui_line(58, "m = A*u");
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("DE BROGLIE");
+    ui_line(14, "electron: K eV -> J");
+    ui_line(26, "luego p y lambda");
+    ui_line(38, "H enlace ~128 pm");
+    ui_line(50, "compara escalas");
+    ui_line(62, "usa h, no hbar");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -447,6 +484,20 @@ static void task1_photoelectric_formula(void)
     ui_line(34, "Kmax = E - phi");
     ui_line(46, "Kmax = hc(1/l -");
     ui_line(56, "1/l0)");
+    ui_line(68, "con lambda en m");
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("FOTO ATAJO");
+    ui_line(14, "E(eV)=1240/lambda");
+    ui_line(26, "phi=1240/lambda0");
+    ui_line(38, "K=1240*(1/l-1/l0)");
+    ui_line(50, "si lambda < lambda0");
+    ui_line(62, "sale electron");
+    ui_line(74, "si no, K=0");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -517,6 +568,18 @@ static void task1_forces_case(void)
     }
 
     ui_clear();
+    ui_title("FUERZAS PASOS");
+    ui_line(14, "r=300 pm=3E-10 m");
+    ui_line(26, "d(1/r)/dr=-1/r^2");
+    ui_line(38, "Fe=e^2/(4*pi*eps0*r^2)");
+    ui_line(50, "Fg=G*me*mp/r^2");
+    ui_line(62, "error: usar 300 m");
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
     ui_title("FUERZAS");
     sprintf(buffer, "Fe = %.3E N", coulomb_n);
     ui_line(14, buffer);
@@ -525,6 +588,7 @@ static void task1_forces_case(void)
     sprintf(buffer, "Fg/Fe = %.3E", ratio);
     ui_line(38, buffer);
     ui_line(54, "gravedad despreciable");
+    ui_line(66, "ratio << 1");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
@@ -557,6 +621,7 @@ static void task1_blackbody_case(void)
     ui_line(34, "denom ~ h*nu/kT");
     ui_line(46, "RJ: (8*pi*k*T/c^3)");
     ui_line(58, "* nu^2 dnu");
+    ui_line(70, "h*nu cancela");
     if (!task1_page_pause())
     {
         return;
@@ -571,6 +636,18 @@ static void task1_blackbody_case(void)
     ui_line(38, "x < 0.1 => clasico");
     ui_line(50, "1E12 Hz: no");
     ui_line(60, "1E11 Hz: si");
+    if (!task1_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("CUERPO NEGRO");
+    ui_line(14, "Planck corta alta nu");
+    ui_line(26, "RJ crece como nu^2");
+    ui_line(38, "alta nu explota");
+    ui_line(50, "catastrofe UV");
+    ui_line(62, "fisica: cuantos");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }

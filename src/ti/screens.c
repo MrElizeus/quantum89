@@ -88,8 +88,65 @@ void screen_constants(void)
     ui_line(34, "eps0 = 8.8541878128E-12");
     ui_line(44, "pi   = 3.14159265358979");
     ui_line(54, "CC   = 5.8E-19 J");
+    ui_line(64, "G    = 6.67430E-11");
+    ui_line(74, "hc   = 1240 eV*nm");
     ui_footer("Tecla: volver");
     ui_wait();
+}
+
+void screen_errors(void)
+{
+    short key;
+
+    ui_clear();
+    ui_title("ERRORES 1");
+    ui_line(14, "eV -> J: * e");
+    ui_line(26, "J -> eV: / e");
+    ui_line(38, "nm -> m: *1E-9");
+    ui_line(50, "pm -> m: *1E-12");
+    ui_footer("ENTER sigue | ESC vuelve");
+    key = ui_wait_key();
+    if (key == KEY_ESC) return;
+
+    ui_clear();
+    ui_title("ERRORES 2");
+    ui_line(14, "foton: E=h*nu");
+    ui_line(26, "deBroglie: lambda=h/p");
+    ui_line(38, "operadores usan hbar");
+    ui_line(50, "px=-i*hbar*d/dx");
+    ui_footer("ENTER sigue | ESC vuelve");
+    key = ui_wait_key();
+    if (key == KEY_ESC) return;
+
+    ui_clear();
+    ui_title("ERRORES 3");
+    ui_line(14, "<A>=int psi* Apsi dx");
+    ui_line(26, "A actua sobre psi");
+    ui_line(38, "luego multiplicar");
+    ui_line(50, "por psi* e integrar");
+    ui_footer("ENTER sigue | ESC vuelve");
+    key = ui_wait_key();
+    if (key == KEY_ESC) return;
+
+    ui_clear();
+    ui_title("ERRORES 4");
+    ui_line(14, "v: m/s");
+    ui_line(24, "p: kg*m/s");
+    ui_line(34, "lambda: m");
+    ui_line(44, "P: adimensional");
+    ui_line(54, "F: N = kg*m/s^2");
+    ui_footer("ENTER sigue | ESC vuelve");
+    key = ui_wait_key();
+    if (key == KEY_ESC) return;
+
+    ui_clear();
+    ui_title("ERRORES 5");
+    ui_line(14, "si v > c:");
+    ui_line(26, "revisa eV -> J");
+    ui_line(38, "revisa masa kg");
+    ui_line(50, "o usa relatividad");
+    ui_footer("ENTER sigue | ESC vuelve");
+    ui_wait_key();
 }
 
 void screen_photon_demo(void)

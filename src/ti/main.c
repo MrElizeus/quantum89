@@ -12,11 +12,12 @@ static void show_main_menu(void)
 
     ui_line(16, "1. Tarea 1 Luz");
     ui_line(28, "2. Tarea 2 Oper");
-    ui_line(40, "3. Tarea 3 Caja/Osc");
+    ui_line(40, "3. Tarea 3 Caja");
     ui_line(52, "4. Constantes");
-    ui_line(64, "5. About");
+    ui_line(64, "5. Errores");
+    ui_line(76, "6. About");
 
-    ui_footer("1-5 elegir | ESC salir");
+    ui_footer("1-6 elegir | ESC salir");
 }
 
 void _main(void)
@@ -52,6 +53,10 @@ void _main(void)
                 break;
 
             case '5':
+                screen_errors();
+                break;
+
+            case '6':
                 screen_about();
                 break;
 

@@ -28,6 +28,29 @@ static void task3_box_probability(void)
 
     ui_clear();
     ui_title("CAJA PROB");
+    ui_line(14, "psi_n=sqrt(2/a)");
+    ui_line(26, "*sin(n*pi*x/a)");
+    ui_line(38, "P=int |psi|^2 dx");
+    ui_line(50, "entre x1 y x2");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("CAJA PROB");
+    ui_line(14, "sin^2 antider:");
+    ui_line(26, "x/2 - sin(2kx)/(4k)");
+    ui_line(38, "k=n*pi/a");
+    ui_line(50, "evalua limites");
+    ui_line(62, "error: a/4 no 1/4");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("CAJA PROB");
     ui_line(14, "P(0,a/4)");
     sprintf(buffer, "n1 = %.4f", p11);
     ui_line(24, buffer);
@@ -51,60 +74,144 @@ static void task3_box_probability(void)
     sprintf(buffer, "n3 = %.4f", p23);
     ui_line(44, buffer);
     ui_line(58, "patron oscilante");
+    ui_footer("ENTER sigue | ESC vuelve");
+    ui_wait_key();
+}
+
+static void task3_px(void)
+{
+    ui_clear();
+    ui_title("<px>");
+    ui_line(14, "px=-i*hbar*d/dx");
+    ui_line(26, "<px>=int psi* px psi dx");
+    ui_line(38, "operador actua");
+    ui_line(50, "sobre psi primero");
     if (!task3_page_pause())
     {
         return;
     }
 
     ui_clear();
-    ui_title("CAJA PROB");
-    ui_line(14, "psi_n = sqrt(2/a)");
-    ui_line(24, "* sin(n*pi*x/a)");
-    ui_line(36, "|psi|^2 =");
-    ui_line(46, "(2/a)*sin^2(n*pi*x/a)");
-    ui_line(58, "P = int[x1,x2] |psi|^2 dx");
+    ui_title("<px>");
+    ui_line(14, "psi real en caja");
+    ui_line(26, "onda estacionaria");
+    ui_line(38, "<px> = 0");
+    ui_line(50, "izq y der cancelan");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
 }
 
-static void task3_box_values(void)
+static void task3_px2(void)
+{
+    ui_clear();
+    ui_title("<px2>");
+    ui_line(14, "px2=-hbar^2*d2/dx2");
+    ui_line(26, "d2psi =");
+    ui_line(38, "-(n*pi/a)^2 psi");
+    ui_line(50, "entonces es auto");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("<px2>");
+    ui_line(14, "<px2> =");
+    ui_line(26, "(n*pi*hbar/a)^2");
+    ui_line(38, "siempre positivo");
+    ui_line(50, "mide energia cin");
+    ui_footer("ENTER sigue | ESC vuelve");
+    ui_wait_key();
+}
+
+static void task3_sigma_x(void)
 {
     char buffer[64];
     double sigma1;
     double sigma2;
     double sigma3;
 
-    screen_box1d_demo();
-
     sigma1 = q_box_sigma_x_over_a(1);
     sigma2 = q_box_sigma_x_over_a(2);
     sigma3 = q_box_sigma_x_over_a(3);
 
     ui_clear();
-    ui_title("CAJA VALORES");
-    ui_line(14, "px = -i*hbar*d/dx");
-    ui_line(24, "px^2 = -hbar^2*d2/dx2");
-    ui_line(34, "<px^2> =");
-    ui_line(44, "(n*pi*hbar/a)^2");
-    ui_line(56, "<x> = a/2");
+    ui_title("SIGMA X");
+    ui_line(14, "<x> = a/2");
+    ui_line(26, "<x2> = a^2(1/3");
+    ui_line(38, "-1/(2n^2*pi^2))");
+    ui_line(50, "sigma=sqrt(<x2>-<x>^2)");
     if (!task3_page_pause())
     {
         return;
     }
 
     ui_clear();
-    ui_title("CAJA VALORES");
-    ui_line(14, "<x2> = a^2(1/3");
-    ui_line(24, "- 1/(2n^2*pi^2))");
-    ui_line(36, "sigma = sqrt(<x2>-<x>^2)");
-    sprintf(buffer, "sigma/a n1 = %.4f", sigma1);
-    ui_line(50, buffer);
-    sprintf(buffer, "sigma/a n2 = %.4f", sigma2);
-    ui_line(62, buffer);
-    sprintf(buffer, "sigma/a n3 = %.4f", sigma3);
-    ui_line(74, buffer);
+    ui_title("SIGMA X");
+    sprintf(buffer, "sigma/a n1=%.4f", sigma1);
+    ui_line(14, buffer);
+    sprintf(buffer, "sigma/a n2=%.4f", sigma2);
+    ui_line(26, buffer);
+    sprintf(buffer, "sigma/a n3=%.4f", sigma3);
+    ui_line(38, buffer);
+    ui_line(52, "sube hacia a/sqrt(12)");
+    ui_line(64, "mas extendida");
     ui_footer("ENTER sigue | ESC vuelve");
     ui_wait_key();
+}
+
+static void task3_expected_value(void)
+{
+    ui_clear();
+    ui_title("VALOR ESP");
+    ui_line(14, "<A>=int psi* Apsi dx");
+    ui_line(26, "si psi compleja:");
+    ui_line(38, "usa conjugada psi*");
+    ui_line(50, "A actua sobre psi");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("VALOR ESP");
+    ui_line(14, "1 aplica A a psi");
+    ui_line(26, "2 multiplica psi*");
+    ui_line(38, "3 integra dominio");
+    ui_line(50, "4 revisa unidades");
+    ui_line(62, "fisica: promedio");
+    ui_footer("ENTER sigue | ESC vuelve");
+    ui_wait_key();
+}
+
+static void task3_values_menu(void)
+{
+    short key;
+
+    while (1)
+    {
+        ui_clear();
+        ui_title("VALORES");
+        ui_line(16, "1. <px>");
+        ui_line(28, "2. <px2>");
+        ui_line(40, "3. Sigma x");
+        ui_line(52, "4. Valor esp");
+        ui_footer("1-4 elegir | ESC volver");
+        key = ui_wait_key();
+        if (key == KEY_ESC)
+        {
+            break;
+        }
+
+        switch (key)
+        {
+            case '1': task3_px(); break;
+            case '2': task3_px2(); break;
+            case '3': task3_sigma_x(); break;
+            case '4': task3_expected_value(); break;
+            default: break;
+        }
+    }
 }
 
 static void task3_trial_energy(void)
@@ -121,6 +228,17 @@ static void task3_trial_energy(void)
     ui_line(36, "H = -hbar^2/(2m)");
     ui_line(46, "d2/dx2");
     ui_line(58, "<E> = 6*hbar^2/(m*a^2)");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("ENERGIA TRIAL");
+    ui_line(14, "deriva dos veces");
+    ui_line(26, "integra Psi* H Psi");
+    ui_line(38, "normalizacion incluida");
+    ui_line(50, "error: olvidar dx");
     if (!task3_page_pause())
     {
         return;
@@ -160,6 +278,17 @@ static void task3_oscillator(void)
 
     ui_clear();
     ui_title("OSCILADOR");
+    ui_line(14, "verifica:");
+    ui_line(26, "x''=-w^2 x");
+    ui_line(38, "si w^2=k/m");
+    ui_line(50, "cumple ecuacion");
+    if (!task3_page_pause())
+    {
+        return;
+    }
+
+    ui_clear();
+    ui_title("OSCILADOR");
     ui_line(14, "E = 1/2*k*C^2");
     ui_line(26, "= 1/2*m*w^2*C^2");
     ui_line(38, "<T>/E = 1/2");
@@ -189,10 +318,11 @@ static void task3_formulas(void)
     ui_title("FORMULAS T3");
     ui_line(14, "psi_n = sqrt(2/a)");
     ui_line(24, "* sin(n*pi*x/a)");
-    ui_line(36, "P = int[x1,x2] |psi|^2 dx");
-    ui_line(48, "<px2> = (n*pi*hbar/a)^2");
-    ui_line(60, "<x> = a/2");
-    ui_line(72, "<x2> = a^2(1/3-1/2n^2pi^2)");
+    ui_line(34, "P=int |psi|^2 dx");
+    ui_line(44, "<px2>=(n*pi*hbar/a)^2");
+    ui_line(54, "<x> = a/2");
+    ui_line(64, "<x2> = a^2*(1/3");
+    ui_line(74, " -1/(2n^2*pi^2))");
     ui_footer("ENTER sigue | ESC vuelve");
     if (!task3_page_pause())
     {
@@ -215,7 +345,7 @@ static void task3_menu_draw(void)
     ui_clear();
     ui_title("TAREA 3");
     ui_line(16, "1. Caja prob");
-    ui_line(28, "2. Caja valores");
+    ui_line(28, "2. Valores");
     ui_line(40, "3. Energia trial");
     ui_line(52, "4. Oscilador");
     ui_line(64, "5. Formulas");
@@ -242,7 +372,7 @@ void screen_task3_menu(void)
                 break;
 
             case '2':
-                task3_box_values();
+                task3_values_menu();
                 break;
 
             case '3':
