@@ -169,54 +169,31 @@ static void task1_photon_planck(void)
 
 static void task1_photon_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "Demo 632.8",
+        "Presets 300/600/1200",
+        "Formula",
+        "Umbral CC",
+        "Planck",
+        "Resolucion"
+    };
+    short sel;
 
     while (1)
     {
-        ui_clear();
-        ui_title("FOTON / PLANCK");
-        ui_line(16, "1. Demo 632.8");
-        ui_line(28, "2. Presets 300/600/1200");
-        ui_line(40, "3. Formula");
-        ui_line(52, "4. Umbral CC");
-        ui_line(64, "5. Planck");
-        ui_line(76, "6. Resolucion");
-        ui_footer("1-6 elegir | ESC volver");
+        sel = ui_menu("FOTON / PLANCK", items, 6);
 
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                screen_photon_demo();
-                break;
-
-            case '2':
-                task1_photon_presets();
-                break;
-
-            case '3':
-                task1_photon_formula();
-                break;
-
-            case '4':
-                task1_photon_threshold();
-                break;
-
-            case '5':
-                task1_photon_planck();
-                break;
-
-            case '6':
-                task1_photon_resolution();
-                break;
-
-            default:
-                break;
+            case 0: screen_photon_demo(); break;
+            case 1: task1_photon_presets(); break;
+            case 2: task1_photon_formula(); break;
+            case 3: task1_photon_threshold(); break;
+            case 4: task1_photon_planck(); break;
+            case 5: task1_photon_resolution(); break;
         }
     }
 }
@@ -380,54 +357,31 @@ static void task1_debroglie_formula(void)
 
 static void task1_debroglie_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "electron 1 eV",
+        "electron 10 eV",
+        "electron 100 eV",
+        "N2 28u / 500",
+        "Na 22.99u / 900",
+        "formulas"
+    };
+    short sel;
 
     while (1)
     {
-        ui_clear();
-        ui_title("DE BROGLIE");
-        ui_line(16, "1. electron 1 eV");
-        ui_line(28, "2. electron 10 eV");
-        ui_line(40, "3. electron 100 eV");
-        ui_line(52, "4. N2 28u / 500");
-        ui_line(64, "5. Na 22.99u / 900");
-        ui_line(76, "6. formulas");
-        ui_footer("1-6 elegir | ESC volver");
+        sel = ui_menu("DE BROGLIE", items, 6);
 
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                task1_debroglie_electron_case("ELECTRON 1 eV", 1.0);
-                break;
-
-            case '2':
-                task1_debroglie_electron_case("ELECTRON 10 eV", 10.0);
-                break;
-
-            case '3':
-                task1_debroglie_electron_case("ELECTRON 100 eV", 100.0);
-                break;
-
-            case '4':
-                task1_debroglie_n2();
-                break;
-
-            case '5':
-                task1_debroglie_na();
-                break;
-
-            case '6':
-                task1_debroglie_formula();
-                break;
-
-            default:
-                break;
+            case 0: task1_debroglie_electron_case("ELECTRON 1 eV", 1.0); break;
+            case 1: task1_debroglie_electron_case("ELECTRON 10 eV", 10.0); break;
+            case 2: task1_debroglie_electron_case("ELECTRON 100 eV", 100.0); break;
+            case 3: task1_debroglie_n2(); break;
+            case 4: task1_debroglie_na(); break;
+            case 5: task1_debroglie_formula(); break;
         }
     }
 }
@@ -504,34 +458,23 @@ static void task1_photoelectric_formula(void)
 
 static void task1_photoelectric_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "Potasio 564/410",
+        "Formula"
+    };
+    short sel;
 
     while (1)
     {
-        ui_clear();
-        ui_title("FOTOELECTRICO");
-        ui_line(16, "1. Potasio 564/410");
-        ui_line(28, "2. Formula");
-        ui_footer("1-2 elegir | ESC volver");
+        sel = ui_menu("FOTOELECTRICO", items, 2);
 
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                task1_photoelectric_case();
-                break;
-
-            case '2':
-                task1_photoelectric_formula();
-                break;
-
-            default:
-                break;
+            case 0: task1_photoelectric_case(); break;
+            case 1: task1_photoelectric_formula(); break;
         }
     }
 }
@@ -652,55 +595,31 @@ static void task1_blackbody_case(void)
     ui_wait_key();
 }
 
-static void task1_menu_draw(void)
-{
-    ui_clear();
-    ui_title("TAREA 1");
-    ui_line(16, "1. Foton/Planck");
-    ui_line(28, "2. de Broglie");
-    ui_line(40, "3. Fotoelectrico");
-    ui_line(52, "4. Fuerzas");
-    ui_line(64, "5. Cuerpo negro");
-    ui_footer("1-5 elegir | ESC volver");
-}
-
 void screen_task1_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "Foton/Planck",
+        "de Broglie",
+        "Fotoelectrico",
+        "Fuerzas",
+        "Cuerpo negro"
+    };
+    short sel;
 
     while (1)
     {
-        task1_menu_draw();
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        sel = ui_menu("TAREA 1", items, 5);
+
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                task1_photon_menu();
-                break;
-
-            case '2':
-                task1_debroglie_menu();
-                break;
-
-            case '3':
-                task1_photoelectric_menu();
-                break;
-
-            case '4':
-                task1_forces_case();
-                break;
-
-            case '5':
-                task1_blackbody_case();
-                break;
-
-            default:
-                break;
+            case 0: task1_photon_menu(); break;
+            case 1: task1_debroglie_menu(); break;
+            case 2: task1_photoelectric_menu(); break;
+            case 3: task1_forces_case(); break;
+            case 4: task1_blackbody_case(); break;
         }
     }
 }

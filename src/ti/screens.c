@@ -151,51 +151,29 @@ void screen_errors(void)
 
 void screen_photon_demo(void)
 {
-    short key;
+    static const char *items[] = {
+        "HeNe 632.8 nm",
+        "UV 300 nm",
+        "Visible 600 nm",
+        "IR 1200 nm",
+        "Formulas"
+    };
+    short sel;
 
     while (1)
     {
-        ui_clear();
-        ui_title("FOTON / PLANCK");
+        sel = ui_menu("FOTON / PLANCK", items, 5);
 
-        ui_line(14, "1. HeNe 632.8 nm");
-        ui_line(26, "2. UV 300 nm");
-        ui_line(38, "3. Visible 600 nm");
-        ui_line(50, "4. IR 1200 nm");
-        ui_line(62, "5. Formulas");
-
-        ui_footer("1-5 elegir | ESC volver");
-        key = ngetchx();
-
-        if (key == KEY_ESC)
-        {
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                show_photon_result(632.8);
-                break;
-
-            case '2':
-                show_photon_result(300.0);
-                break;
-
-            case '3':
-                show_photon_result(600.0);
-                break;
-
-            case '4':
-                show_photon_result(1200.0);
-                break;
-
-            case '5':
-                show_photon_formulas();
-                break;
-
-            default:
-                break;
+            case 0: show_photon_result(632.8); break;
+            case 1: show_photon_result(300.0); break;
+            case 2: show_photon_result(600.0); break;
+            case 3: show_photon_result(1200.0); break;
+            case 4: show_photon_formulas(); break;
         }
     }
 }

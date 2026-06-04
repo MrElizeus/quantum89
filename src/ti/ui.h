@@ -7,5 +7,6 @@ void ui_footer(const char *text);
 void ui_wait(void);
 short ui_wait_key(void);
 void ui_line(short y, const char *text);
+short ui_menu(const char *title, const char **items, short count);
 
 #endif

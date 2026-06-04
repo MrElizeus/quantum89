@@ -186,30 +186,27 @@ static void task3_expected_value(void)
 
 static void task3_values_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "<px>",
+        "<px2>",
+        "Sigma x",
+        "Valor esp"
+    };
+    short sel;
 
     while (1)
     {
-        ui_clear();
-        ui_title("VALORES");
-        ui_line(16, "1. <px>");
-        ui_line(28, "2. <px2>");
-        ui_line(40, "3. Sigma x");
-        ui_line(52, "4. Valor esp");
-        ui_footer("1-4 elegir | ESC volver");
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
-            break;
-        }
+        sel = ui_menu("VALORES", items, 4);
 
-        switch (key)
+        if (sel == -1)
+            break;
+
+        switch (sel)
         {
-            case '1': task3_px(); break;
-            case '2': task3_px2(); break;
-            case '3': task3_sigma_x(); break;
-            case '4': task3_expected_value(); break;
-            default: break;
+            case 0: task3_px(); break;
+            case 1: task3_px2(); break;
+            case 2: task3_sigma_x(); break;
+            case 3: task3_expected_value(); break;
         }
     }
 }
@@ -340,55 +337,31 @@ static void task3_formulas(void)
     ui_wait_key();
 }
 
-static void task3_menu_draw(void)
-{
-    ui_clear();
-    ui_title("TAREA 3");
-    ui_line(16, "1. Caja prob");
-    ui_line(28, "2. Valores");
-    ui_line(40, "3. Energia trial");
-    ui_line(52, "4. Oscilador");
-    ui_line(64, "5. Formulas");
-    ui_footer("1-5 elegir | ESC volver");
-}
-
 void screen_task3_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "Caja prob",
+        "Valores",
+        "Energia trial",
+        "Oscilador",
+        "Formulas"
+    };
+    short sel;
 
     while (1)
     {
-        task3_menu_draw();
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        sel = ui_menu("TAREA 3", items, 5);
+
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                task3_box_probability();
-                break;
-
-            case '2':
-                task3_values_menu();
-                break;
-
-            case '3':
-                task3_trial_energy();
-                break;
-
-            case '4':
-                task3_oscillator();
-                break;
-
-            case '5':
-                task3_formulas();
-                break;
-
-            default:
-                break;
+            case 0: task3_box_probability(); break;
+            case 1: task3_values_menu(); break;
+            case 2: task3_trial_energy(); break;
+            case 3: task3_oscillator(); break;
+            case 4: task3_formulas(); break;
         }
     }
 }

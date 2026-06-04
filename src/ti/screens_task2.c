@@ -263,55 +263,31 @@ static void task2_rules(void)
     ui_wait_key();
 }
 
-static void task2_menu_draw(void)
-{
-    ui_clear();
-    ui_title("TAREA 2");
-    ui_line(16, "1. Operadores");
-    ui_line(28, "2. Autofunciones");
-    ui_line(40, "3. Conmutadores");
-    ui_line(52, "4. Herm/Matrices");
-    ui_line(64, "5. Reglas clave");
-    ui_footer("1-5 elegir | ESC volver");
-}
-
 void screen_task2_menu(void)
 {
-    short key;
+    static const char *items[] = {
+        "Operadores",
+        "Autofunciones",
+        "Conmutadores",
+        "Herm/Matrices",
+        "Reglas clave"
+    };
+    short sel;
 
     while (1)
     {
-        task2_menu_draw();
-        key = ui_wait_key();
-        if (key == KEY_ESC)
-        {
+        sel = ui_menu("TAREA 2", items, 5);
+
+        if (sel == -1)
             break;
-        }
 
-        switch (key)
+        switch (sel)
         {
-            case '1':
-                task2_operators();
-                break;
-
-            case '2':
-                task2_eigenfunctions();
-                break;
-
-            case '3':
-                task2_commutators();
-                break;
-
-            case '4':
-                task2_hermitian();
-                break;
-
-            case '5':
-                task2_rules();
-                break;
-
-            default:
-                break;
+            case 0: task2_operators(); break;
+            case 1: task2_eigenfunctions(); break;
+            case 2: task2_commutators(); break;
+            case 3: task2_hermitian(); break;
+            case 4: task2_rules(); break;
         }
     }
 }
